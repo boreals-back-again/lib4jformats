@@ -1,0 +1,4 @@
+.geanyprj
+*.geany
+*.tags
+build/
