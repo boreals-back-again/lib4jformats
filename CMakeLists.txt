@@ -27,13 +27,22 @@ set(ENVIRONMENT_TYPE "Native")
 set(LIB_TYPE SHARED)
 add_library(lib4jformats ${LIB_TYPE} ${FILES})
 
-option(USE_JSON "JSON exporting" ON)
+option(USE_JSON "JSON interop" ON)
 
 if(USE_JSON)
-	find_package(nlohmann_json REQUIRED)
+	include(FetchContent)
+	FetchContent_Declare(
+		nlohmann_json
+		GIT_REPOSITORY https://github.com/nlohmann/json.git
+		GIT_TAG v3.12.0
+	)
+
+	FetchContent_MakeAvailable(nlohmann_json)
+
 	target_link_libraries(lib4jformats PRIVATE nlohmann_json::nlohmann_json)
 	target_compile_definitions(lib4jformats PRIVATE USE_JSON=1)
 endif()
+
 
 target_compile_definitions(lib4jformats PRIVATE
     COMPILER_NAME="${CMAKE_CXX_COMPILER_ID}"
