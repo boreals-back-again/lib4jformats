@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <filesystem>
-#include <chrono>
 
 #include "Localization/LOCFile.h"
 
@@ -16,6 +14,10 @@ void loc1() {
     }
 
     l4jf::loc::LOCFile loc(stream);
+
+    #ifdef USE_JSON
+    std::cout << loc.ToJson()->dump(4) << std::endl;
+    #endif
      
     std::filesystem::path locCopyPath = "languages_copy.loc";
     std::ofstream out(locCopyPath, std::ios::out | std::ofstream::trunc | std::ios::binary);
@@ -38,8 +40,10 @@ void loc2() {
 
     l4jf::loc::LOCFile loc(stream);
     
+    #ifdef USE_JSON
     std::cout << loc.ToJson()->dump(4) << std::endl;
-     
+    #endif
+    
     std::filesystem::path locCopyPath = "languages_copy.loc";
     std::ofstream out(locCopyPath, std::ios::out | std::ofstream::trunc | std::ios::binary);
     if (!out) {
@@ -52,7 +56,8 @@ void loc2() {
 
 
 int main() {    
-    loc2();
+    loc1();
+    //loc2();
 
     return 0;
 }

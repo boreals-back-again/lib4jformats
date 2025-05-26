@@ -55,4 +55,4 @@ if (CMAKE_CXX_BYTE_ORDER EQUAL BIG_ENDIAN)
     target_compile_definitions(lib4jformats PRIVATE BR_BIG_ENDIAN)
 endif()
 
-add_subdirectory(examples)
+add_subdirectory(example)
