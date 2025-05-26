@@ -40,6 +40,7 @@ namespace l4jf::loc {
 		
 		#ifdef USE_JSON
 		std::unique_ptr<nlohmann::json> ToJson() const;
+		LOCFile(const nlohmann::json& fromJson);
 		#endif
 		
 		void Write(std::ostream& output) const;

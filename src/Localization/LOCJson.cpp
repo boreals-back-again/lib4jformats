@@ -7,6 +7,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 #ifndef LOCJSON_H
 
 #include "LOCFile.h"
+#include "../IO/Conversion.h"
 #include <nlohmann/json.hpp>
 
 namespace l4jf::loc {
@@ -23,10 +24,36 @@ namespace l4jf::loc {
 		j["keys"] = keys;
 		
 		for(const auto& language : languages) {
-			j["languages"][language.first] = language.second.strings;
+			j["languages"][language.first]["shouldReadByte"] = language.second.shouldReadByte;
+			if(language.second.shouldReadByte)
+			j["languages"][language.first]["byte"] = language.second.byte;
+			j["languages"][language.first]["bytesLength"] = language.second.bytesLength;
+			j["languages"][language.first]["strings"] = language.second.strings;
 		}
 		
 		return std::make_unique<nlohmann::json>(j);
+	}
+	
+	LOCFile::LOCFile(const nlohmann::json& fromJson) {
+		version = fromJson["version"];
+		
+		if(fromJson["useUniqueIds"]) {
+			useUniqueIds = fromJson["useUniqueIds"];
+		}
+		
+		keys = fromJson["keys"];
+		
+		for (const auto& language : fromJson["languages"].items()) {
+			Language lang;
+			
+			lang.shouldReadByte = language.value()["shouldReadByte"];
+			lang.byte = language.value()["byte"];
+			lang.bytesLength = language.value()["bytesLength"];
+			lang.strings = language.value()["strings"];
+			
+			languages[language.key()] = lang;
+		}
+
 	}
 }
 
