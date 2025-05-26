@@ -21,10 +21,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 #endif // USE_JSON
 
 namespace l4jf::loc {
-	
-	std::string UIntToHexString(uint32_t input);
-	uint32_t HexStringToUInt(const std::string& str);
-	
+
 	// Either a vector of strings or uint32, for either useUniqueIds;
 	using LangIds = std::map<std::string, uint32_t>; // id, code
 	using Languages = std::map<std::string, Language>; // code, Language

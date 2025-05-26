@@ -7,23 +7,11 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 
 #include "LOCFile.h"
 #include <iostream>
-#include <string>
-#include <sstream>
-#include <iomanip>
+
+#include "../IO/Conversion.h"
 
 namespace l4jf::loc {
-	
-	// TODO: Move these functions to somewhere more fitting
-	std::string UIntToHexString(uint32_t input) {
-		std::stringstream stream;
-		stream << std::setfill('0') << std::setw(sizeof(uint32_t) * 2) << std::hex << input;
-		return stream.str();
-	}
-	
-	uint32_t HexStringToUInt(const std::string& str) {
-		return static_cast<uint32_t>(std::stoul(str, nullptr, 16));
-	}
-	
+
 	LOCFile::LOCFile(std::istream& input) {
 		io::BinaryReader reader(input, Endianness::BigEndian);
 		
@@ -39,7 +27,7 @@ namespace l4jf::loc {
 			
 			for(auto& key : *keys) {
 				key = useUniqueIds ? 
-				UIntToHexString(reader.Read<uint32_t>()) 
+				io::UIntToHexString(reader.Read<uint32_t>()) 
 				: reader.Read4JString();
 			}			
 		}		
@@ -73,7 +61,7 @@ namespace l4jf::loc {
 			
 			for(const auto& key : *keys) {
 				useUniqueIds ? 
-				writer.Write<uint32_t>(HexStringToUInt(key))
+				writer.Write<uint32_t>(io::HexStringToUInt(key))
 				: writer.Write4JString(key);
 			}
 		}
