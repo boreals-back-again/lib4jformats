@@ -11,6 +11,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 #include "../IO/BinaryIO.h"
 
 #include <unordered_map>
+#include <map>
 #include <vector>
 #include <memory>
 
@@ -31,7 +32,7 @@ namespace l4jf::loc {
 		std::unordered_map<std::string, std::string> strings; // key, value
 	};
 	
-	using Languages = std::unordered_map<std::string, Language>; // code, Language
+	using Languages = std::map<std::string, Language>; // code, Language
 
 	class LOCFile {
 	public:
