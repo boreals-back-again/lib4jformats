@@ -11,8 +11,6 @@ set(FILES
 	src/IO/Conversion.cpp
 	src/IO/Conversion.h
 	src/IO/Types.h
-	src/Localization/Language.cpp
-	src/Localization/Language.h
 	src/Localization/LOCJson.cpp
 	src/Localization/LOCFile.cpp
 	src/Localization/LOCFile.h

@@ -23,28 +23,41 @@ namespace l4jf::loc {
 			useUniqueIds = (reader.ReadByte() > static_cast<std::byte>(0));
 			uint32_t keyCount =  reader.Read<uint32_t>();
 			
-			keys = std::make_shared<Keys>(keyCount);	
+			keys.resize(keyCount);	
 			
-			for(auto& key : *keys) {
+			for(auto& key : keys) {
 				key = useUniqueIds ? 
 				io::UIntToHexString(reader.Read<uint32_t>()) 
 				: reader.Read4JString();
-			}			
+			}		
 		}		
 		
 		// Languages Table
 		for(uint32_t i = 0; i < languageCount; i++) {
 			std::string code = reader.Read4JString();	
-			uint32_t id = reader.Read<uint32_t>();
-		
-			langIds[code] = id;
+			uint32_t length = reader.Read<uint32_t>();
+			
+			// create a new blank language to have data filled later
+			languages[code] = Language();
+			
+			languages[code].bytesLength = length;
 		}
 		
 		// Strings table
-		for(uint32_t i = 0; i < languageCount; i++) {
-			Language lang(reader, keys);
+		for(auto& language : languages) {
+			Language& langData = language.second;
+			langData.shouldReadByte = reader.Read<uint32_t>();
 			
-			languages.emplace(lang.GetCode(), lang);
+			if(langData.shouldReadByte) {
+				langData.byte = reader.ReadByte();
+			}
+			
+			reader.Read4JString(); // language code has already been set
+			uint32_t stringsCount = reader.Read<uint32_t>();
+			
+			for(int i = 0; i < stringsCount; i++) {
+				langData.strings[ keys[i] ] = reader.Read4JString();
+			}
 		}
 	}
 	
@@ -57,24 +70,26 @@ namespace l4jf::loc {
 		// Write Key Table
 		if(version == 0x2) {
 			writer.Write<uint8_t>(useUniqueIds);
-			writer.Write<uint32_t>(keys->size());
+			writer.Write<uint32_t>(keys.size());
 			
-			for(const auto& key : *keys) {
+			for(const auto& key : keys) {
 				useUniqueIds ? 
 				writer.Write<uint32_t>(io::HexStringToUInt(key))
 				: writer.Write4JString(key);
 			}
 		}
 		
-		// Write Lang Ids
-		for(const auto& langId : langIds) {
-			writer.Write4JString(langId.first);
-			writer.Write<uint32_t>(langId.second);
-		} 
-		
-		// Write Language Tables
 		for(const auto& language : languages) {
-			language.second.Write(writer);
+			const Language& langData = language.second; 
+			
+			writer.Write<uint32_t>(langData.shouldReadByte);
+			if(langData.shouldReadByte) writer.WriteByte(langData.byte);
+			
+			writer.Write4JString(language.first);
+			
+			for(uint32_t i = 0; i < langData.strings.size(); i++) {
+				writer.Write4JString( langData.strings.at(keys[i]) );
+			}
 		}
 	}
 	

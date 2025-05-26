@@ -9,9 +9,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 #define LOCFILE_H
 
 #include "../IO/BinaryIO.h"
-#include "Language.h"
 
-#include <map>
 #include <unordered_map>
 #include <vector>
 #include <memory>
@@ -21,10 +19,19 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 #endif // USE_JSON
 
 namespace l4jf::loc {
-
-	// Either a vector of strings or uint32, for either useUniqueIds;
-	using LangIds = std::map<std::string, uint32_t>; // id, code
-	using Languages = std::map<std::string, Language>; // code, Language
+	
+	// This struct is Plain Old Data. we want to recreate the file exactly, so those five
+	// bytes must be preserved.
+	struct Language {
+		// in the Languages table, this is stored after the name of the language.
+		uint32_t bytesLength;
+		
+		uint32_t shouldReadByte;
+		std::byte byte{};
+		std::unordered_map<std::string, std::string> strings; // key, value
+	};
+	
+	using Languages = std::unordered_map<std::string, Language>; // code, Language
 
 	class LOCFile {
 	public:
@@ -42,8 +49,7 @@ namespace l4jf::loc {
 		bool useUniqueIds = false;
 		
 		// Shared with every language.
-		std::shared_ptr<Keys> keys;
-		LangIds langIds;
+		std::vector<std::string> keys;
 		Languages languages;
 	};
 

@@ -15,17 +15,15 @@ namespace l4jf::loc {
 		nlohmann::json j;
 		
 		j["version"] = version;
-		
-		j["languageIds"] = langIds;
 			
 		if(useUniqueIds) {
 			j["useUniqueIds"] = useUniqueIds;
 		}
 		
-		j["keys"] = *keys;
+		j["keys"] = keys;
 		
 		for(const auto& language : languages) {
-			j["languages"][language.first] = *language.second.GetStringsOrdered();
+			j["languages"][language.first] = language.second.strings;
 		}
 		
 		return std::make_unique<nlohmann::json>(j);
