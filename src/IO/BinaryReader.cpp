@@ -13,10 +13,10 @@ namespace l4jf::io {
 	
 	BinaryReader::BinaryReader(std::istream &_stream, Endianness _endian) : stream(_stream), endian(_endian) {}
 	
-	std::byte BinaryReader::ReadByte() {
+	uint8_t BinaryReader::ReadByte() {
 		char ch;
 		stream.get(ch);
-		return static_cast<std::byte>(ch);
+		return static_cast<uint8_t>(ch);
 	}
 	
 	std::string BinaryReader::ReadUTF8(size_t length) {

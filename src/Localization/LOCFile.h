@@ -27,7 +27,7 @@ namespace l4jf::loc {
 		uint32_t bytesLength;
 		
 		uint32_t shouldReadByte;
-		std::byte byte{};
+		uint8_t byte{};
 		std::unordered_map<std::string, std::string> strings; // key, value
 	};
 	

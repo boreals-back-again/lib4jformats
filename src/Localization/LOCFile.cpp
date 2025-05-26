@@ -20,7 +20,7 @@ namespace l4jf::loc {
 
 		// Key Table
 		if(version == 0x2) {
-			useUniqueIds = (reader.ReadByte() > static_cast<std::byte>(0));
+			useUniqueIds = (reader.ReadByte() > 0);
 			uint32_t keyCount =  reader.Read<uint32_t>();
 			
 			keys.resize(keyCount);	

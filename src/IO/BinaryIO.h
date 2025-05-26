@@ -33,7 +33,7 @@ namespace l4jf::io {
 		template <typename T>
 		T Read();
 
-		std::byte ReadByte();
+		uint8_t ReadByte();
 		std::unique_ptr<ByteVector> ReadBytes(int64_t offset, size_t size);
 		std::string ReadUTF8(size_t length);
 		std::string Read4JString();
@@ -52,7 +52,7 @@ namespace l4jf::io {
 		void WriteUTF8(std::string input);
 		void WriteBytes(const ByteVector& input);
 		void Write4JString(std::string input);
-		void WriteByte(std::byte byte);
+		void WriteByte(uint8_t byte);
 	};
 }
 

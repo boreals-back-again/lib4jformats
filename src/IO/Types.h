@@ -13,7 +13,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 
 namespace l4jf { // Not in IO namespace.
 	
-	using ByteVector = std::vector<std::byte>;
+	using ByteVector = std::vector<uint8_t>;
 	
 	enum class Endianness {
 		LittleEndian,

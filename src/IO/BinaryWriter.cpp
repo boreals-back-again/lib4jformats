@@ -8,7 +8,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 
 namespace l4jf::io {
 	
-	void BinaryWriter::WriteByte(std::byte byte) {
+	void BinaryWriter::WriteByte(uint8_t byte) {
 		stream.put(static_cast<char>(byte));
 	}
 	
