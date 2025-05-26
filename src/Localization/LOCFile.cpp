@@ -29,13 +29,14 @@ namespace l4jf::loc {
 		
 		version = reader.Read<uint32_t>();
 		uint32_t languageCount = reader.Read<uint32_t>();
-		
+
 		// Key Table
 		if(version == 0x2) {
-			keys = std::make_shared<Keys>(languageCount);			
-			useUniqueIds = (reader.ReadByte() > static_cast<std::byte>(0));		
+			useUniqueIds = (reader.ReadByte() > static_cast<std::byte>(0));
 			uint32_t keyCount =  reader.Read<uint32_t>();
-				
+			
+			keys = std::make_shared<Keys>(keyCount);	
+			
 			for(auto& key : *keys) {
 				key = useUniqueIds ? 
 				UIntToHexString(reader.Read<uint32_t>()) 
@@ -45,9 +46,9 @@ namespace l4jf::loc {
 		
 		// Languages Table
 		for(uint32_t i = 0; i < languageCount; i++) {
-			std::string code = reader.Read4JString();
+			std::string code = reader.Read4JString();	
 			uint32_t id = reader.Read<uint32_t>();
-			
+		
 			langIds[code] = id;
 		}
 		
