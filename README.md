@@ -2,15 +2,11 @@
 
 <p align="center">
   <a href="https://github.com/boreals-back-again/lib4jformats">
-    <img src="./docs/logo/l4jf-light.png" alt="lib4jformats logo" height="180px" />
+    <picture>
+      <source srcset="./docs/logo/l4jf-dark.png" media="(prefers-color-scheme: dark)">
+      <img src="./docs/logo/l4jf-light.png" alt="lib4jformats logo" height="180px" />
+    </picture>
   </a>
-</p>
-
-<p align="center">
-  <picture>
-    <source srcset="./docs/logo/l4jf-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="./docs/logo/l4jf-dark.png" alt="lib4jformats logo" height="180px" />
-  </picture>
 </p>
 
 This C++17 library implements the properitary file types 4J Studios made for Minecraft: Legacy Console Edition. 
