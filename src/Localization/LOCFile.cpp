@@ -79,6 +79,11 @@ namespace l4jf::loc {
 			}
 		}
 		
+		for(const auto& language : languages) {		
+			writer.Write4JString(language.first);
+			writer.Write<uint32_t>(language.second.bytesLength);
+		}
+		
 		for(const auto& language : languages) {
 			const Language& langData = language.second; 
 			
@@ -86,6 +91,8 @@ namespace l4jf::loc {
 			if(langData.shouldReadByte) writer.WriteByte(langData.byte);
 			
 			writer.Write4JString(language.first);
+			
+			writer.Write<uint32_t>(langData.strings.size());
 			
 			for(uint32_t i = 0; i < langData.strings.size(); i++) {
 				writer.Write4JString( langData.strings.at(keys[i]) );
