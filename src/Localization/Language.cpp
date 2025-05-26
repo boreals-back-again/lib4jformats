@@ -19,7 +19,7 @@ namespace l4jf::loc {
 		uint32_t stringsCount = reader.Read<uint32_t>();
 		
 		for(uint32_t i = 0; i < stringsCount; i++) {
-			strings[ reader.Read4JString() ] = reader.Read4JString(); // segfaults if version != 0x2
+			strings[ keys->at(i) ] = reader.Read4JString(); // segfaults if version != 0x2
 		}
 	}
 	
