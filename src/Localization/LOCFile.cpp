@@ -27,7 +27,7 @@ namespace l4jf::loc {
 			
 			for(auto& key : keys) {
 				key = useUniqueIds ? 
-				io::UIntToHexString(reader.Read<uint32_t>()) 
+				io::ToHexString<uint32_t>(reader.Read<uint32_t>()) 
 				: reader.Read4JString();
 			}		
 		}		
@@ -39,7 +39,6 @@ namespace l4jf::loc {
 			
 			// create a new blank language to have data filled later
 			languages[code] = Language();
-			
 			languages[code].bytesLength = length;
 		}
 		
@@ -74,7 +73,7 @@ namespace l4jf::loc {
 			
 			for(const auto& key : keys) {
 				useUniqueIds ? 
-				writer.Write<uint32_t>(io::HexStringToUInt(key))
+				writer.Write<uint32_t>(io::FromHexString<uint32_t>(key))
 				: writer.Write4JString(key);
 			}
 		}

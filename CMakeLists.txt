@@ -8,7 +8,6 @@ set(FILES
 	src/IO/BinaryReader.cpp
 	src/IO/BinaryIO.t.h
 	src/IO/BinaryIO.h
-	src/IO/Conversion.cpp
 	src/IO/Conversion.h
 	src/IO/Types.h
 	src/Localization/LOCJson.cpp
