@@ -2,3 +2,5 @@
 *.geany
 *.tags
 build/
+.cache/
+.vscode/
