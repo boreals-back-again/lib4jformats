@@ -18,7 +18,7 @@ Building instructions: [docs/build.md](docs/build.md)
 This includes:
 - .ARC (Archive file)
 - .LOC (Localization file)
-- .COL (Color file)
+- .COL (Colour file)
 - .PCK (Pack file)
 - .MSSCMP (Miles Sound System Soundbank)
 
