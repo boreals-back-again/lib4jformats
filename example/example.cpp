@@ -57,7 +57,7 @@ void locOld() {
 
 int main() {    
     locNew();
-    locOld();
+    //locOld();
 
     return 0;
 }
