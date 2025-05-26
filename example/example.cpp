@@ -4,7 +4,7 @@
 
 #include "Localization/LOCFile.h"
 
-void loc1() {
+void locNew() {
 	std::filesystem::path locPath = "languages.loc";
 	
     std::ifstream stream(locPath, std::ios::in | std::ios::binary);
@@ -29,7 +29,7 @@ void loc1() {
     loc.Write(out);
 }
 
-void loc2() {
+void locOld() {
 	std::filesystem::path locPath = "languagesOld.loc";
 	
     std::ifstream stream(locPath, std::ios::in | std::ios::binary);
@@ -56,8 +56,8 @@ void loc2() {
 
 
 int main() {    
-    loc1();
-    //loc2();
+    locNew();
+    locOld();
 
     return 0;
 }
