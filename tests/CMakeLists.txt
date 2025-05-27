@@ -28,3 +28,11 @@ target_compile_definitions(tests PRIVATE USE_JSON=1)
 target_link_libraries(tests PRIVATE nlohmann_json::nlohmann_json)
 
 target_link_libraries(tests PRIVATE doctest::doctest)
+
+include(CTest)
+enable_testing()
+
+target_include_directories(tests PRIVATE ${doctest_SOURCE_DIR})
+include("${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake")
+
+doctest_discover_tests(tests)
