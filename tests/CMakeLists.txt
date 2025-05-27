@@ -1,4 +1,4 @@
-add_executable(tests src/loc.cpp)
+add_executable(tests src/loc.cpp src/arc.cpp)
 target_link_libraries(tests PRIVATE lib4jformats)
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
