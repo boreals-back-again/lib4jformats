@@ -61,9 +61,14 @@ TEST_CASE("Getting and setting LOC entries") {
 	
 	loc.SetString("95744b8a", "GB only", "EN-gb");
 	CHECK(loc.GetString("95744b8a").value()["es-MX"] != "GB only");
-	
-	CHECK(loc.HasLanguage("cs-CZ") == true);
 }
 
-
-
+TEST_CASE("Getting and setting LOC languages") {
+	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
+	
+	l4jf::loc::LOCFile loc(input);
+	
+	CHECK(loc.HasLanguage("cs-CZ") == true);
+	loc.RemoveLanguage("cs-CZ");
+	CHECK(loc.HasLanguage("cs-CZ") == false);
+}
