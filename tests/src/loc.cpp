@@ -5,25 +5,25 @@
 #include <sstream>
 
 TEST_CASE("Parse and write LOC") {
-    std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
-    CHECK(input.is_open());
-
-    std::stringstream original;
-    original << input.rdbuf();
-    input.clear();
-    input.seekg(0, std::ios::beg);
-
-    l4jf::loc::LOCFile loc(input);
-    std::ostringstream locStream;
-    loc.Write(locStream);
-
-    CHECK(locStream.str() == original.str());
+	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
+	REQUIRE(input.is_open());
+	
+	std::stringstream original;
+	original << input.rdbuf();
+	input.clear();
+	input.seekg(0, std::ios::beg);
+	
+	l4jf::loc::LOCFile loc(input);
+	std::ostringstream locStream;
+	loc.Write(locStream);
+	
+	CHECK(locStream.str() == original.str());
 }
 
 TEST_CASE("Convert between LOC and JSON") {
 	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
 	REQUIRE(input.is_open());
-	 
+	
 	l4jf::loc::LOCFile loc(input);
 	
 	l4jf::loc::LOCFile locFromJson(*loc.ToJson());
