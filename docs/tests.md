@@ -9,3 +9,4 @@ doctest is used for testing. Both doctest and json are supplied with `FetchConte
 ## LOC Tests
 1. **"Parse and write LOC"** Open LOC file, copy to stringstream, re-serialize with LOCFile, and compare output.
 2. **"Convert between LOC and JSON"** Parse LOC file, convert to JSON and back, then assert equivalence with original.
+3. **"Getting and setting LOC entries** Open LOC File, Get a string by its ID, check it's the correct one, set the same string by it's ID, and check that the string was set
