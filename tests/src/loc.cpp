@@ -52,12 +52,14 @@ TEST_CASE("Getting and setting LOC entries") {
 	
 	CHECK(cookedChickenKey.value()["en-EN"] == "Cooked Chicken");
 	
-	
 	loc.SetString("351cc791", "LOC Test...");
 	
 	auto testKey = loc.GetString("351cc791");
 	REQUIRE(testKey != std::nullopt);
 	
 	CHECK(testKey.value()["ja-JP"] == "LOC Test...");
+	
+	loc.SetString("95744b8a", "GB only", "EN-gb");
+	CHECK(loc.GetString("95744b8a").value()["es-MX"] != "GB only");
 }
 
