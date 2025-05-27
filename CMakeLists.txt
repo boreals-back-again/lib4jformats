@@ -23,7 +23,7 @@ set(FILES
 )
 
 set(ENVIRONMENT_TYPE "Native")
-set(LIB_TYPE SHARED)
+set(LIB_TYPE STATIC)
 add_library(lib4jformats ${LIB_TYPE} ${FILES})
 
 option(USE_JSON "JSON interop" ON)
