@@ -76,3 +76,11 @@ TEST_CASE("Getting and setting LOC languages") {
 	
 	CHECK(loc.HasLanguage("te-ST"));
 }
+
+TEST_CASE("Getting all LOC strings") {
+	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
+	
+	l4jf::loc::LOCFile loc(input);
+	
+	CHECK(loc.GetStrings()["351cc791"].size() == 25);
+}
