@@ -14,6 +14,7 @@ This C++17 library implements the properitary file types 4J Studios made for Min
 With an optional dependency on [json](https://github.com/nlohmann/json), some file types can be converted to and from JSON.
 
 Building instructions: [docs/build.md](docs/build.md)
+Unit testing: [docs/tests.md](docs/tests.md)
 
 This includes:
 - .ARC (Archive file)
