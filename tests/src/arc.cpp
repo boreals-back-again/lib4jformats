@@ -5,7 +5,7 @@
 
 TEST_CASE("Parse and write ARC") {
     std::ifstream input("files/MediaWiiU.arc", std::ios::in | std::ios::binary);
-    CHECK(input.is_open());
+    REQUIRE(input.is_open());
 
     std::stringstream original;
     original << input.rdbuf();
