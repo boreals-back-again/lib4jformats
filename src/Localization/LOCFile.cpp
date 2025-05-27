@@ -114,4 +114,8 @@ namespace l4jf::loc {
 			strings[key][language.code] = value;
 		}
 	}
+	
+	void LOCFile::SetString(const std::string& key, const std::string& value, const std::string& language) {
+		strings[key][language] = value;
+	}
 }
