@@ -10,6 +10,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 
 #include "../IO/BinaryIO.h"
 
+#include <optional>
 #include <unordered_map>
 #include <map>
 #include <vector>
@@ -44,7 +45,8 @@ namespace l4jf::loc {
 		
 		void Write(std::ostream& output) const;
 		
-		std::string GetLanguage(const std::string& key);
+		std::optional<std::map<std::string, std::string>> GetString(const std::string& key);
+		void SetString(const std::string& key, const std::string& value);
 	private:
 		uint32_t version;		
 		bool useUniqueIds = false;

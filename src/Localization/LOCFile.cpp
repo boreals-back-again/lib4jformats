@@ -100,4 +100,18 @@ namespace l4jf::loc {
 		}
 	}
 	
+	std::optional<std::map<std::string, std::string>> LOCFile::GetString(const std::string& key) {
+		auto it = strings.find(key);
+		if (it != strings.end()) {
+			return it->second;
+		}
+		
+		return std::nullopt;
+	}
+	
+	void LOCFile::SetString(const std::string& key, const std::string& value) {
+		for(const auto& language : languages) {
+			strings[key][language.code] = value;
+		}
+	}
 }
