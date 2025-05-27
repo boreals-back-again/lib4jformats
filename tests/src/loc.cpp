@@ -40,6 +40,7 @@ TEST_CASE("Convert between LOC and JSON") {
 	
 	CHECK(locStream.str() == locFromJsonStream.str());
 }
+#endif //USE_JSON
 
 TEST_CASE("Getting and setting LOC entries") {
 	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
@@ -59,4 +60,4 @@ TEST_CASE("Getting and setting LOC entries") {
 	
 	CHECK(testKey.value()["ja-JP"] == "LOC Test...");
 }
-#endif //USE_JSON
+
