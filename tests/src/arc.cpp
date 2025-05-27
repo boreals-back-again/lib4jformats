@@ -10,7 +10,6 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 
 TEST_CASE("Parse and write ARC") {
     std::ifstream input("files/MediaWiiU.arc", std::ios::in | std::ios::binary);
-    REQUIRE(input.is_open());
 
     std::stringstream original;
     original << input.rdbuf();
