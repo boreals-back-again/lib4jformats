@@ -1,3 +1,8 @@
+/* 
+Tests for the LOCFile class.
+Copyright 2025 Boreal | Licensed under LICENSE_TBD
+*/
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 #include "Localization/LOCFile.h"

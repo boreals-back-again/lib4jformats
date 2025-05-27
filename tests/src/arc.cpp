@@ -1,3 +1,8 @@
+/* 
+Tests for the ARCFile class.
+Copyright 2025 Boreal | Licensed under LICENSE_TBD
+*/
+
 #include <doctest/doctest.h>
 #include "Archive/ARCFile.h"
 #include <fstream>
