@@ -25,6 +25,7 @@ TEST_CASE("Parse and write LOC") {
 	CHECK(locStream.str() == original.str());
 }
 
+#ifdef USE_JSON
 TEST_CASE("Convert between LOC and JSON") {
 	std::ifstream input("files/languages.loc", std::ios::in | std::ios::binary);
 	REQUIRE(input.is_open());
@@ -41,3 +42,4 @@ TEST_CASE("Convert between LOC and JSON") {
 	
 	CHECK(locStream.str() == locFromJsonStream.str());
 }
+#endif //USE_JSON
