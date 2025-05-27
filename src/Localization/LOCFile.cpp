@@ -152,4 +152,8 @@ namespace l4jf::loc {
 		if(HasLanguage(language))
 		strings[key][language] = value;
 	}
+	
+	std::unordered_map<std::string, std::map<std::string, std::string>> LOCFile::GetStrings() {
+		return strings;
+	}
 }

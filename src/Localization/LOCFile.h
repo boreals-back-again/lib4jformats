@@ -53,6 +53,7 @@ namespace l4jf::loc {
 		void SetString(const std::string& key, const std::string& value);
 		void SetString(const std::string& key, const std::string& value, const std::string& language);
 		
+		std::unordered_map<std::string, std::map<std::string, std::string>> GetStrings();
 	private:
 		uint32_t version;		
 		bool useUniqueIds = false;
