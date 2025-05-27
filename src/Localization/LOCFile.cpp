@@ -32,30 +32,34 @@ namespace l4jf::loc {
 			}		
 		}		
 		
+		languages.resize(languageCount);
+		
 		// Languages Table
 		for(uint32_t i = 0; i < languageCount; i++) {
 			std::string code = reader.Read4JString();	
 			uint32_t length = reader.Read<uint32_t>();
 			
-			// create a new blank language to have data filled later
-			languages[code] = Language();
-			languages[code].bytesLength = length;
+			Language lang;
+			
+			lang.code = code;
+			lang.bytesLength = length;
+			
+			languages[i] = lang;
 		}
 		
 		// Strings table
 		for(auto& language : languages) {
-			Language& langData = language.second;
-			langData.shouldReadByte = reader.Read<uint32_t>();
+			language.shouldReadByte = reader.Read<uint32_t>();
 			
-			if(langData.shouldReadByte) {
-				langData.byte = reader.ReadByte();
+			if(language.shouldReadByte) {
+				language.byte = reader.ReadByte();
 			}
 			
-			reader.Read4JString(); // language code has already been set
+			std::string code = reader.Read4JString();
 			uint32_t stringsCount = reader.Read<uint32_t>();
 			
 			for(int i = 0; i < stringsCount; i++) {
-				langData.strings[ keys[i] ] = reader.Read4JString();
+				strings[keys[i]][code] = reader.Read4JString();
 			}
 		}
 	}
@@ -79,22 +83,19 @@ namespace l4jf::loc {
 		}
 		
 		for(const auto& language : languages) {		
-			writer.Write4JString(language.first);
-			writer.Write<uint32_t>(language.second.bytesLength);
+			writer.Write4JString(language.code);
+			writer.Write<uint32_t>(language.bytesLength);
 		}
 		
 		for(const auto& language : languages) {
-			const Language& langData = language.second; 
+			writer.Write<uint32_t>(language.shouldReadByte);
+			if(language.shouldReadByte) writer.WriteByte(language.byte);
 			
-			writer.Write<uint32_t>(langData.shouldReadByte);
-			if(langData.shouldReadByte) writer.WriteByte(langData.byte);
+			writer.Write4JString(language.code);
+			writer.Write<uint32_t>(strings.size());
 			
-			writer.Write4JString(language.first);
-			
-			writer.Write<uint32_t>(langData.strings.size());
-			
-			for(uint32_t i = 0; i < langData.strings.size(); i++) {
-				writer.Write4JString( langData.strings.at(keys[i]) );
+			for(uint32_t i = 0; i < strings.size(); i++) {
+				writer.Write4JString( strings.at(keys[i]).at(language.code) );
 			}
 		}
 	}

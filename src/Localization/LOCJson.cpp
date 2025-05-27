@@ -23,13 +23,20 @@ namespace l4jf::loc {
 		
 		j["keys"] = keys;
 		
+		nlohmann::json languagesJson = nlohmann::json::array();
+ 
 		for(const auto& language : languages) {
-			j["languages"][language.first]["shouldReadByte"] = language.second.shouldReadByte;
-			if(language.second.shouldReadByte)
-			j["languages"][language.first]["byte"] = language.second.byte;
-			j["languages"][language.first]["bytesLength"] = language.second.bytesLength;
-			j["languages"][language.first]["strings"] = language.second.strings;
+			languagesJson.push_back({
+				{"shouldReadByte", language.shouldReadByte},
+				{"byte", language.byte},
+				{"code", language.code},
+				{"bytesLength", language.bytesLength}
+			});
 		}
+		
+		j["languages"] = languagesJson;
+		
+		j["strings"] = strings;
 		
 		return std::make_unique<nlohmann::json>(j);
 	}
@@ -42,6 +49,7 @@ namespace l4jf::loc {
 		}
 		
 		keys = fromJson["keys"];
+		strings = fromJson["strings"];
 		
 		for (const auto& language : fromJson["languages"].items()) {
 			Language lang;
@@ -49,9 +57,9 @@ namespace l4jf::loc {
 			lang.shouldReadByte = language.value()["shouldReadByte"];
 			lang.byte = language.value()["byte"];
 			lang.bytesLength = language.value()["bytesLength"];
-			lang.strings = language.value()["strings"];
+			lang.code = language.value()["code"];
 			
-			languages[language.key()] = lang;
+			languages.push_back(lang);
 		}
 
 	}

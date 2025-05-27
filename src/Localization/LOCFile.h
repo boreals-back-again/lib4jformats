@@ -25,14 +25,13 @@ namespace l4jf::loc {
 	// bytes must be preserved.
 	struct Language {
 		// in the Languages table, this is stored after the name of the language.
+		std::string code;
 		uint32_t bytesLength;
 		
 		uint32_t shouldReadByte;
 		uint8_t byte{};
-		std::unordered_map<std::string, std::string> strings; // key, value
+		 // key, value
 	};
-	
-	using Languages = std::map<std::string, Language>; // code, Language
 
 	class LOCFile {
 	public:
@@ -44,15 +43,16 @@ namespace l4jf::loc {
 		#endif
 		
 		void Write(std::ostream& output) const;
-		uint32_t GetKeyCount() const;
 		
+		std::string GetLanguage(const std::string& key);
 	private:
 		uint32_t version;		
 		bool useUniqueIds = false;
 		
 		// Shared with every language.
 		std::vector<std::string> keys;
-		Languages languages;
+		std::vector<Language> languages;
+		std::unordered_map<std::string, std::map<std::string, std::string>> strings;
 	};
 
 }
