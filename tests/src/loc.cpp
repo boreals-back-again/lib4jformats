@@ -71,4 +71,8 @@ TEST_CASE("Getting and setting LOC languages") {
 	CHECK(loc.HasLanguage("cs-CZ") == true);
 	loc.RemoveLanguage("cs-CZ");
 	CHECK(loc.HasLanguage("cs-CZ") == false);
+	
+	loc.AddLanguage({"te-ST", 0x100, 0x0, 0x0});
+	
+	CHECK(loc.HasLanguage("te-ST"));
 }
