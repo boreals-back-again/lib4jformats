@@ -55,3 +55,4 @@ if (CMAKE_CXX_BYTE_ORDER EQUAL BIG_ENDIAN)
 endif()
 
 add_subdirectory(example)
+add_subdirectory(tests)

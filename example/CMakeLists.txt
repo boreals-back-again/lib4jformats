@@ -8,4 +8,3 @@ if(USE_JSON)
     target_compile_definitions(example PRIVATE USE_JSON=1)
     target_link_libraries(example PRIVATE nlohmann_json::nlohmann_json)
 endif()
-
