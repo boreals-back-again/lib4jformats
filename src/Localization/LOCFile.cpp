@@ -120,6 +120,28 @@ namespace l4jf::loc {
 		return ( it != languages.end() );
 	}
 	
+	void LOCFile::RemoveLanguage(const std::string& code) {
+		auto it = std::find_if( languages.begin(), languages.end(), 
+			[&]( const Language &l ) { return ( l.code == code ); } );	
+		
+		if (it == languages.end()) return;
+		
+		for (auto& str : strings) {
+			str.second.erase(it->code);
+		}
+		
+		languages.erase(it);
+	}
+	
+	void LOCFile::AddLanguage(const Language& lang) {
+		if(HasLanguage(lang.code)) return;
+		languages.push_back(lang);
+		
+		for(auto& str : strings) {
+			str.second[lang.code] = "";
+		}
+	}
+	
 	void LOCFile::SetString(const std::string& key, const std::string& value) {
 		for(const auto& language : languages) {
 			strings[key][language.code] = value;

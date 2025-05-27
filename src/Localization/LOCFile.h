@@ -46,10 +46,13 @@ namespace l4jf::loc {
 		void Write(std::ostream& output) const;
 		
 		bool HasLanguage(const std::string& code);
+		void RemoveLanguage(const std::string& code);
+		void AddLanguage(const Language& lang);
 		
 		std::optional<std::map<std::string, std::string>> GetString(const std::string& key);
 		void SetString(const std::string& key, const std::string& value);
 		void SetString(const std::string& key, const std::string& value, const std::string& language);
+		
 	private:
 		uint32_t version;		
 		bool useUniqueIds = false;
