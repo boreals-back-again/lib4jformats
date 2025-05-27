@@ -6,7 +6,7 @@ Copyright 2025 Boreal | Licensed under LICENSE_TBD
 */
 
 #include "LOCFile.h"
-#include <iostream>
+#include <algorithm>
 
 #include "../IO/Conversion.h"
 
@@ -109,13 +109,25 @@ namespace l4jf::loc {
 		return std::nullopt;
 	}
 	
+	// *Time complexity?*
+	// There's only ~25 languages so it's not that big of a deal but
+	// it might be a better idea if languages were in a map instead of
+	// a vector.
+	bool LOCFile::HasLanguage(const std::string& code) {
+		auto it = std::find_if( languages.begin(), languages.end(), 
+			[&]( const Language &l ) { return ( l.code == code ); } );	
+		
+		return ( it != languages.end() );
+	}
+	
 	void LOCFile::SetString(const std::string& key, const std::string& value) {
 		for(const auto& language : languages) {
 			strings[key][language.code] = value;
 		}
 	}
 	
-	void LOCFile::SetString(const std::string& key, const std::string& value, const std::string& language) {
+	void LOCFile::SetString(const std::string& key, const std::string& value, const std::string& language) {	
+		if(HasLanguage(language))
 		strings[key][language] = value;
 	}
 }
