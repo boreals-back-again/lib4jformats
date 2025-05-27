@@ -18,17 +18,13 @@ ExternalProject_Add(
 # Catch2
 include(FetchContent)
 FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG v3.8.1
+  doctest
+  GIT_REPOSITORY https://github.com/doctest/doctest.git
+  GIT_TAG v2.4.12
 )
-FetchContent_MakeAvailable(Catch2)
+FetchContent_MakeAvailable(doctest)
 
 target_compile_definitions(tests PRIVATE USE_JSON=1)
 target_link_libraries(tests PRIVATE nlohmann_json::nlohmann_json)
 
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
-
-include(Catch)
-catch_discover_tests(tests)
-
+target_link_libraries(tests PRIVATE doctest::doctest)
