@@ -25,5 +25,3 @@ This includes:
 
 This does not cover game saves, or anything the can write to.
 For that, there is [libLCE](https://github.com/DexrnZacAtack/libLCE).
-
-> "Make it right. Make it good. Make it fast"
