@@ -19,6 +19,8 @@ With an optional dependency on [json](https://github.com/nlohmann/json), some fi
 This includes:
 - .ARC (Archive file)
 - .LOC (Localization file)
+
+To be added:
 - .COL (Colour file)
 - .PCK (Pack file)
 - .MSSCMP (Miles Sound System Soundbank)
