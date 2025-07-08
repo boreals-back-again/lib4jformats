@@ -6,7 +6,6 @@ Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include "ARCFile.h"
-#include <algorithm>
 
 namespace l4jf::arc {
 	
