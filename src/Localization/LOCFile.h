@@ -2,7 +2,7 @@
 Declares the LOCFile class, which implements the LOC file type.
 Documentation for this file type is available at:
 https://team-lodestone.github.io/Documentation/LCE/File%20Types/LOC.html
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifndef LOCFILE_H

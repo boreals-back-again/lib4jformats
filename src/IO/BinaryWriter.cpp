@@ -1,6 +1,6 @@
 /* 
 Defines the BinaryWriter class, which is used to serialize the implemented files.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include "BinaryIO.h"

@@ -1,6 +1,6 @@
 /* 
 Defines the templated BinaryReader::Read and BinaryWriter::Write functions.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifndef BINARYIO_T_H

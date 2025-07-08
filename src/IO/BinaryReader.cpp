@@ -1,6 +1,6 @@
 /* 
 Defines the BinaryReader class (and relevant functions), which is used to deserialize the implemented files.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include "BinaryIO.h"

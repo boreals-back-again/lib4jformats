@@ -2,7 +2,7 @@
 Defines the ARCFile class, which implements the ARC file type.
 Documentation for this file type is available at:
 https://team-lodestone.github.io/Documentation/LCE/File%20Types/ARC.html
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include "ARCFile.h"

@@ -1,6 +1,6 @@
 /* 
 Tests for the LOCFile class.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN

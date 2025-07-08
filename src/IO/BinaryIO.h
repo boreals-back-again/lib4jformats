@@ -1,6 +1,6 @@
 /* 
 Declares the BinaryReader and Writer classes (and relevant functions), which are used to serialize and deserialize the implemented files.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifndef BINARYIO_H

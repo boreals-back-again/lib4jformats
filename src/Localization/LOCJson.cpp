@@ -1,6 +1,6 @@
 /* 
 Defines optional methods for dumping the LOC file as a JSON with nlohmann::json
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifdef USE_JSON

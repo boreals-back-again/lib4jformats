@@ -1,6 +1,6 @@
 /* 
 Defines the InnerFile class, which is responsible holding the files in a File
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include "InnerFile.h"

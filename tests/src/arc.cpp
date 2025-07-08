@@ -1,6 +1,6 @@
 /* 
 Tests for the ARCFile class.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #include <doctest/doctest.h>

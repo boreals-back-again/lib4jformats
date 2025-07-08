@@ -1,6 +1,6 @@
 /* 
 Defines the enum for little and big endianness, and the byteVector
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifndef TYPES_H

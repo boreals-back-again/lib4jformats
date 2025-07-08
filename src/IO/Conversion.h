@@ -1,6 +1,6 @@
 /* 
 Defines conversion functions, which don't need to be in a class.
-Copyright 2025 Boreal | Licensed under LICENSE_TBD
+Copyright 2025 Boreal | Licensed under BSD-3
 */
 
 #ifndef CONVERSION_H
